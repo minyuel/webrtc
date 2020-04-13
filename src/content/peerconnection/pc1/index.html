@@ -41,13 +41,22 @@
         the connection is also available (unified-plan, plan-b or default).
     </p>
 
-    <video id="localVideo" playsinline autoplay muted></video>
-    <video id="remoteVideo" playsinline autoplay></video>
+    <div class="video-container">
+      <video id="localVideo" playsinline autoplay muted></video>
+    </div>
+    <div class="video-container">
+      <video id="remoteVideo" playsinline autoplay></video>
+      <audio id="remoteAudio" playsinline autoplay></audio>
+      <div id="remoteAudioBar">a: </div>
+      <div id="remoteVideoBar">v: </div>
+      <div id="remoteDiffBar">d: </div>
+    </div>
 
     <div class="box">
         <button id="startButton">Start</button>
         <button id="callButton">Call</button>
         <button id="hangupButton">Hang Up</button>
+        <button id="delayButton">Delay Audio By 2 Seconds</button>
     </div>
 
     <div class="box">

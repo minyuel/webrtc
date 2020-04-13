@@ -7,11 +7,16 @@
  */
 button {
   margin: 0 20px 0 0;
-  width: 83px;
+  min-width: 83px;
 }
 
-button#hangupButton {
+button#delayButton {
     margin: 0;
+}
+
+.video-container {
+  display: inline;
+  position: relative;
 }
 
 video {
@@ -24,6 +29,30 @@ video {
 
 video#localVideo {
   margin: 0 20px 20px 0;
+}
+
+#remoteAudioBar {
+  position: absolute;
+  top: 5px;
+  left: 5px;
+}
+
+#remoteVideoBar {
+  position: absolute;
+  top: 25px;
+  left: 5px;
+}
+
+#remoteDiffBar {
+  position: absolute;
+  top: 45px;
+  left: 5px;
+}
+
+
+#remoteAudioBar, #remoteVideoBar, #remoteDiffBar {
+  color: #1f2;
+  font-weight: bold;
 }
 
 div.box {
