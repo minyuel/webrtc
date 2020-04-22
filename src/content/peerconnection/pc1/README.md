@@ -2,7 +2,7 @@
 Shows a basic example of how to estimate delay between audio and video tracks
 in WebRTC.
 
-This works on Chrome M84 (Canary and Dev channel currently).
+This works on Chrome M83 (Beta channel currently).
 
 Run example with any HTTP server. For e.g. assuming python 2.7:
 ```
