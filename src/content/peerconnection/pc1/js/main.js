@@ -6,6 +6,14 @@
  *  tree.
  */
 
+
+/**
+ * The difference in milliseconds between the javascript epoch and the NTP
+ * epoch.
+ */
+const NTP_EPOCH_OFFSET_MS =
+    (new Date(0)).getTime() - (new Date('1900/01/01 00:00 GMT')).getTime();
+
 const startButton = document.getElementById('startButton');
 const callButton = document.getElementById('callButton');
 const hangupButton = document.getElementById('hangupButton');
@@ -270,13 +278,16 @@ function gotRemoteStream(e) {
     clearInterval(window.pid);
     window.pid = setInterval(() => {
       try {
-        let a_time = (a.getSynchronizationSources()[0].captureTimestamp / 1000.0);
-        let v_time = (v.getSynchronizationSources()[0].captureTimestamp / 1000.0);
+        let a_time = a.getSynchronizationSources()[0].captureTimestamp;
+        let v_time = v.getSynchronizationSources()[0].captureTimestamp;
         let d_time = v_time - a_time;
 
-        audioBar.textContent = `a: ${a_time.toFixed(2)} s`;
-        videoBar.textContent = `v: ${v_time.toFixed(2)} s`;
-        diffBar.textContent = `d: ${d_time.toFixed(2)} s`;
+        let a_delay = Date.now() - (a_time - NTP_EPOCH_OFFSET_MS);
+        let v_delay = Date.now() - (v_time - NTP_EPOCH_OFFSET_MS);
+
+        audioBar.textContent = `audio latency: ${a_delay.toFixed(2)} ms`;
+        videoBar.textContent = `video latency: ${v_delay.toFixed(2)} ms`;
+        diffBar.textContent = `audio behind video by: ${d_time.toFixed(2)} ms`;
       } catch (e) {
         console.error('interval error', e);
       }
